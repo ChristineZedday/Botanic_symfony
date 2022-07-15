@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SuperClasse{% endblock %}
+
+{% block body %}
+    <h1>SuperClasse</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ super_classe.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ super_classe.nom }}</td>
+            </tr>
+            <tr>
+                <th>Vernaculaire</th>
+                <td>{{ super_classe.vernaculaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('super_classe_index') }}">back to list</a>
+
+    <a href="{{ path('super_classe_edit', {'id': super_classe.id}) }}">edit</a>
+
+    {{ include('super_classe/_delete_form.html.twig') }}
+{% endblock %}

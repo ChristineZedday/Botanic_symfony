@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SuperClasse index{% endblock %}
+
+{% block body %}
+    <h1>SuperClasse index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Vernaculaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for super_classe in super_classes %}
+            <tr>
+                <td>{{ super_classe.id }}</td>
+                <td>{{ super_classe.nom }}</td>
+                <td>{{ super_classe.vernaculaire }}</td>
+                <td>
+                    <a href="{{ path('super_classe_show', {'id': super_classe.id}) }}">show</a>
+                    <a href="{{ path('super_classe_edit', {'id': super_classe.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('super_classe_new') }}">Create new</a>
+{% endblock %}

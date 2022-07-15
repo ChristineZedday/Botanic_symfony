@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SuperClasse{% endblock %}
+
+{% block body %}
+    <h1>Create new SuperClasse</h1>
+
+    {{ include('super_classe/_form.html.twig') }}
+
+    <a href="{{ path('super_classe_index') }}">back to list</a>
+{% endblock %}

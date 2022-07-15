@@ -29,9 +29,15 @@ class Embranchement
      */
     private $sousEmbranchements;
 
+    /**
+     * @ORM\OneToMany(targetEntity=SuperClasse::class, mappedBy="embranchement")
+     */
+    private $superClasses;
+
     public function __construct()
     {
         $this->sousEmbranchements = new ArrayCollection();
+        $this->superClasses = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Embranchement
             // set the owning side to null (unless already changed)
             if ($sousEmbranchement->getEmbranchement() === $this) {
                 $sousEmbranchement->setEmbranchement(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SuperClasse[]
+     */
+    public function getSuperClasses(): Collection
+    {
+        return $this->superClasses;
+    }
+
+    public function addSuperClass(SuperClasse $superClass): self
+    {
+        if (!$this->superClasses->contains($superClass)) {
+            $this->superClasses[] = $superClass;
+            $superClass->setEmbranchement($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSuperClass(SuperClasse $superClass): self
+    {
+        if ($this->superClasses->removeElement($superClass)) {
+            // set the owning side to null (unless already changed)
+            if ($superClass->getEmbranchement() === $this) {
+                $superClass->setEmbranchement(null);
             }
         }
 

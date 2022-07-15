@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SousEmbranchement index{% endblock %}
+
+{% block body %}
+    <h1>SousEmbranchement index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Vernaculaire</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for sous_embranchement in sous_embranchements %}
+            <tr>
+                <td>{{ sous_embranchement.id }}</td>
+                <td>{{ sous_embranchement.nom }}</td>
+                <td>{{ sous_embranchement.vernaculaire }}</td>
+                <td>
+                    <a href="{{ path('sous_embranchement_show', {'id': sous_embranchement.id}) }}">show</a>
+                    <a href="{{ path('sous_embranchement_edit', {'id': sous_embranchement.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('sous_embranchement_new') }}">Create new</a>
+{% endblock %}

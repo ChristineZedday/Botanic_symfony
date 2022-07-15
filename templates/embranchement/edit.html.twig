@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Embranchement{% endblock %}
+
+{% block body %}
+    <h1>Edit Embranchement</h1>
+
+    {{ include('embranchement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('embranchement_index') }}">back to list</a>
+
+    {{ include('embranchement/_delete_form.html.twig') }}
+{% endblock %}

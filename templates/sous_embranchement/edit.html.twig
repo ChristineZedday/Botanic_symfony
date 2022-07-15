@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SousEmbranchement{% endblock %}
+
+{% block body %}
+    <h1>Edit SousEmbranchement</h1>
+
+    {{ include('sous_embranchement/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('sous_embranchement_index') }}">back to list</a>
+
+    {{ include('sous_embranchement/_delete_form.html.twig') }}
+{% endblock %}

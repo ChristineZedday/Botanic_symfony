@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SousEmbranchement{% endblock %}
+
+{% block body %}
+    <h1>SousEmbranchement</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ sous_embranchement.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ sous_embranchement.nom }}</td>
+            </tr>
+            <tr>
+                <th>Vernaculaire</th>
+                <td>{{ sous_embranchement.vernaculaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('sous_embranchement_index') }}">back to list</a>
+
+    <a href="{{ path('sous_embranchement_edit', {'id': sous_embranchement.id}) }}">edit</a>
+
+    {{ include('sous_embranchement/_delete_form.html.twig') }}
+{% endblock %}

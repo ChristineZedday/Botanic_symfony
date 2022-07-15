@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SousEmbranchement{% endblock %}
+
+{% block body %}
+    <h1>Create new SousEmbranchement</h1>
+
+    {{ include('sous_embranchement/_form.html.twig') }}
+
+    <a href="{{ path('sous_embranchement_index') }}">back to list</a>
+{% endblock %}

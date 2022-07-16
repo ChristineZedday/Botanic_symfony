@@ -14,6 +14,13 @@
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+        <h1>Botanic Symfony, mon aplication de botanique</h1>
+        <a href="{{ path('home') }}"><h3>page d'accueil</h3> </a>
+        <div id="conteneur">
+            {% block content %}
+             {% endblock %}
+             </div>
+        {% endblock %}
     </body>
 </html>

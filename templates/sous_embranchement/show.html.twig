@@ -2,49 +2,36 @@
 
 {% block title %}SousEmbranchement{% endblock %}
 
-{% block body %}
-    <h1>SousEmbranchement</h1>
+{% block content %}
+    <h1>SousEmbranchement des {{ sous_embranchement.nom }} {% if sousEmbranchement.vernaculaire is defined %}({{ sousEmbranchement.vernaculaire }}) {% endif %}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sous_embranchement.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ sous_embranchement.nom }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ sous_embranchement.vernaculaire }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-     <table class="table">
-        <tbody>
+  
+     <ul>
         {% for superClasse in sous_embranchement.superClasses %}
             
-            <tr>
+            <li>
 
-                <td>   <a href="{{ path('super_classe_show', {'id': superClasse.id}) }}"><h2>{{ superClasse.nom }}</h2></a></td>
-            </tr>
+               <a href="{{ path('super_classe_show', {'id': superClasse.id}) }}"><h2>Super-classe des {{ superClasse.nom }} {% if superClasse.vernaculaire is defined %}({{ superClasse.vernaculaire }}){% endif %}</h2></a>
+               <ul>
+                 {% for Classe in superClasse.Classes %}
+                    <li>
+                     <a href="{{ path('classe_show', {'id': Classe.id}) }}"><h3>Classe des {{ Classe.nom }}  {% if classe.vernaculaire is defined %}({{ classe.vernaculaire }}){% endif %}</h3></a>
+                    </li>
+                 {% endfor %}
+               </ul>
+            </li>
             {% endfor %}
-        </tbody>
-    </table>
+    </ul>
 
-     <table class="table">
-        <tbody>
+     <ul>
         {% for Classe in sous_embranchement.Classes %}
             
-            <tr>
+            <li>
 
-                <td>   <a href="{{ path('super_classe_show', {'id': Classe.id}) }}"><h2>{{ Classe.nom }}</h2></a></td>
-            </tr>
+                 <a href="{{ path('classe_show', {'id': Classe.id}) }}"><h3>Classe des {{ Classe.nom }}  {% if classe.vernaculaire is defined %}({{ classe.vernaculaire }}){% endif %}</h3></a>
+            </li>
             {% endfor %}
-        </tbody>
-    </table>
+        </ul>
 
 
     <a href="{{ path('sous_embranchement_index') }}">back to list</a>

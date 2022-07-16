@@ -44,15 +44,16 @@ class Classe
      */
     private $sousEmbranchement;
 
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $embranchement;
-
+    
     /**
      * @ORM\OneToMany(targetEntity=SousClasse::class, mappedBy="classe")
      */
     private $sousClasses;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Embranchement::class, inversedBy="classes")
+     */
+    private $embranchement;
 
     public function __construct()
     {

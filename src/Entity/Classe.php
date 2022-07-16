@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ClasseRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -46,6 +48,16 @@ class Classe
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $embranchement;
+
+    /**
+     * @ORM\OneToMany(targetEntity=SousClasse::class, mappedBy="classe")
+     */
+    private $sousClasses;
+
+    public function __construct()
+    {
+        $this->sousClasses = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -120,6 +132,36 @@ class Classe
     public function setEmbranchement(?string $embranchement): self
     {
         $this->embranchement = $embranchement;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|SousClasse[]
+     */
+    public function getSousClasses(): Collection
+    {
+        return $this->sousClasses;
+    }
+
+    public function addSousClass(SousClasse $sousClass): self
+    {
+        if (!$this->sousClasses->contains($sousClass)) {
+            $this->sousClasses[] = $sousClass;
+            $sousClass->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSousClass(SousClasse $sousClass): self
+    {
+        if ($this->sousClasses->removeElement($sousClass)) {
+            // set the owning side to null (unless already changed)
+            if ($sousClass->getClasse() === $this) {
+                $sousClass->setClasse(null);
+            }
+        }
 
         return $this;
     }

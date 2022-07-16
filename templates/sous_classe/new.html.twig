@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SousClasse{% endblock %}
+
+{% block body %}
+    <h1>Create new SousClasse</h1>
+
+    {{ include('sous_classe/_form.html.twig') }}
+
+    <a href="{{ path('sous_classe_index') }}">back to list</a>
+{% endblock %}

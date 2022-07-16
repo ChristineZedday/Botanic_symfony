@@ -29,6 +29,18 @@
         </tbody>
     </table>
 
+     <table class="table">
+        <tbody>
+        {% for Classe in embranchement.Classes %}
+            
+            <tr>
+
+                <td>   <a href="{{ path('super_classe_show', {'id': Classe.id}) }}"><h2>{{ Classe.nom }}</h2></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <a href="{{ path('embranchement_index') }}">back to list</a>
 
     <a href="{{ path('embranchement_edit', {'id': embranchement.id}) }}">edit</a>

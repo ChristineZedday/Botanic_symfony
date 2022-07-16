@@ -22,6 +22,18 @@
         </tbody>
     </table>
 
+     <table class="table">
+        <tbody>
+        {% for Classe in super_classe.Classes %}
+            
+            <tr>
+
+                <td>   <a href="{{ path('super_classe_show', {'id': Classe.id}) }}"><h2>{{ Classe.nom }}</h2></a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
     <a href="{{ path('super_classe_index') }}">back to list</a>
 
     <a href="{{ path('super_classe_edit', {'id': super_classe.id}) }}">edit</a>

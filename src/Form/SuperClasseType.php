@@ -30,7 +30,7 @@ class SuperClasseType extends AbstractType
                 'mapped' => true,
                 'required' => false, ])
         ;
-        ;
+        
     }
 
     public function configureOptions(OptionsResolver $resolver)

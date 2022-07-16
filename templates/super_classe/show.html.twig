@@ -3,36 +3,22 @@
 {% block title %}SuperClasse{% endblock %}
 
 {% block content %}
-    <h1>SuperClasse</h1>
+    <h1>Super-classe des {{ super_classe.nom }} {% if super_classe.vernaculaire is defined %}({{ super_classe.vernaculaire }}){% endif %}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ super_classe.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ super_classe.nom }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ super_classe.vernaculaire }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-     <table class="table">
-        <tbody>
+     <ul>
         {% for Classe in super_classe.Classes %}
             
-            <tr>
+            <li>
 
-                <td>   <a href="{{ path('super_classe_show', {'id': Classe.id}) }}"><h2>{{ Classe.nom }}</h2></a></td>
-            </tr>
+               <a href="{{ path('classe_show', {'id': Classe.id}) }}"><h2>Classe des {{ Classe.nom }} {% if Classe.vernaculaire is defined %}({{ Classe.vernaculaire }}){% endif %}</h2></a>
+               <ul>
+                {% for sousClasse in Classe.sousClasses %}
+                <li> <a href="{{ path('sous_classe_show', {'id': sousClasse.id}) }}"><h2>Sous-classe des {{ sousClasse.nom }} {% if sousClasse.vernaculaire is defined %}({{ sousClasse.vernaculaire }}){% endif %}</h2></a></li>
+                 {% endfor %}
+               </ul>
+            </li>
             {% endfor %}
-        </tbody>
-    </table>
+        </ul>
 
     <a href="{{ path('super_classe_index') }}">back to list</a>
 

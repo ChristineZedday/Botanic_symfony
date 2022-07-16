@@ -3,7 +3,7 @@
 {% block title %}SousEmbranchement{% endblock %}
 
 {% block content %}
-    <h1>SousEmbranchement des {{ sous_embranchement.nom }} {% if sousEmbranchement.vernaculaire is defined %}({{ sousEmbranchement.vernaculaire }}) {% endif %}</h1>
+    <h1>SousEmbranchement des {{ sous_embranchement.nom }} {% if sous_embranchement.vernaculaire is defined %}({{ sous_embranchement.vernaculaire }}) {% endif %}</h1>
 
   
      <ul>
@@ -16,6 +16,11 @@
                  {% for Classe in superClasse.Classes %}
                     <li>
                      <a href="{{ path('classe_show', {'id': Classe.id}) }}"><h3>Classe des {{ Classe.nom }}  {% if classe.vernaculaire is defined %}({{ classe.vernaculaire }}){% endif %}</h3></a>
+                       <ul>
+                 {% for sousClasse in Classe.sousClasses %}
+                 <li><a href="{{ path('sous_classe_show', {'id': sousClasse.id}) }}"><h4>Sous-classe des {{ sousClasse.nom }}  {% if sousClasse.vernaculaire is defined %}({{ sousClasse.vernaculaire }}){% endif %}</h4></a></li>
+                  {% endfor %}
+                 </ul>
                     </li>
                  {% endfor %}
                </ul>
@@ -29,6 +34,11 @@
             <li>
 
                  <a href="{{ path('classe_show', {'id': Classe.id}) }}"><h3>Classe des {{ Classe.nom }}  {% if classe.vernaculaire is defined %}({{ classe.vernaculaire }}){% endif %}</h3></a>
+                 <ul>
+                 {% for sousClasse in classe.sousClasses %}
+                 <li><a href="{{ path('sous_classe_show', {'id': sousClasse.id}) }}"><h4>Sous-classe des {{ sousClasse.nom }}  {% if sousClasse.vernaculaire is defined %}({{ sousClasse.vernaculaire }}){% endif %}</h4></a></li>
+                  {% endfor %}
+                 </ul>
             </li>
             {% endfor %}
         </ul>

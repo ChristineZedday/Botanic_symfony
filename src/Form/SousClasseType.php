@@ -2,6 +2,8 @@
 
 namespace App\Form;
 
+use App\Entity\Classe;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use App\Entity\SousClasse;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -14,7 +16,12 @@ class SousClasseType extends AbstractType
         $builder
             ->add('nom')
             ->add('vernaculaire')
-            ->add('classe')
+            ->add('classe', EntityType::class, [
+                'class' => Classe::class,
+                'choice_label' => 'nom',
+                'multiple' => false,
+                'mapped' => true,
+                'required' => true, ])
         ;
     }
 

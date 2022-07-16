@@ -2,15 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\SousClasseRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
+use App\Repository\OrdreRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=SousClasseRepository::class)
+ * @ORM\Entity(repositoryClass=OrdreRepository::class)
  */
-class SousClasse
+class Ordre
 {
     /**
      * @ORM\Id
@@ -30,20 +28,16 @@ class SousClasse
     private $vernaculaire;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="sousClasses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Classe::class, inversedBy="ordres")
      */
     private $classe;
 
     /**
-     * @ORM\OneToMany(targetEntity=Ordre::class, mappedBy="sousClasse")
+     * @ORM\ManyToOne(targetEntity=SousClasse::class, inversedBy="ordres")
      */
-    private $ordres;
+    private $sousClasse;
 
-    public function __construct()
-    {
-        $this->ordres = new ArrayCollection();
-    }
+   
 
     public function getId(): ?int
     {
@@ -86,33 +80,17 @@ class SousClasse
         return $this;
     }
 
-    /**
-     * @return Collection|Ordre[]
-     */
-    public function getOrdres(): Collection
+    public function getSousClasse(): ?SousClasse
     {
-        return $this->ordres;
+        return $this->sousClasse;
     }
 
-    public function addOrdre(Ordre $ordre): self
+    public function setSousClasse(?SousClasse $sousClasse): self
     {
-        if (!$this->ordres->contains($ordre)) {
-            $this->ordres[] = $ordre;
-            $ordre->setSousClasse($this);
-        }
+        $this->sousClasse = $sousClasse;
 
         return $this;
     }
 
-    public function removeOrdre(Ordre $ordre): self
-    {
-        if ($this->ordres->removeElement($ordre)) {
-            // set the owning side to null (unless already changed)
-            if ($ordre->getSousClasse() === $this) {
-                $ordre->setSousClasse(null);
-            }
-        }
-
-        return $this;
-    }
+  
 }

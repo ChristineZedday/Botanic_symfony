@@ -55,9 +55,15 @@ class Classe
      */
     private $embranchement;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Ordre::class, mappedBy="classe")
+     */
+    private $ordres;
+
     public function __construct()
     {
         $this->sousClasses = new ArrayCollection();
+        $this->ordres = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -161,6 +167,36 @@ class Classe
             // set the owning side to null (unless already changed)
             if ($sousClass->getClasse() === $this) {
                 $sousClass->setClasse(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Ordre[]
+     */
+    public function getOrdres(): Collection
+    {
+        return $this->ordres;
+    }
+
+    public function addOrdre(Ordre $ordre): self
+    {
+        if (!$this->ordres->contains($ordre)) {
+            $this->ordres[] = $ordre;
+            $ordre->setClasse($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOrdre(Ordre $ordre): self
+    {
+        if ($this->ordres->removeElement($ordre)) {
+            // set the owning side to null (unless already changed)
+            if ($ordre->getClasse() === $this) {
+                $ordre->setClasse(null);
             }
         }
 

@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordre{% endblock %}
+
+{% block body %}
+    <h1>Ordre</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ ordre.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ ordre.nom }}</td>
+            </tr>
+            <tr>
+                <th>Vernaculaire</th>
+                <td>{{ ordre.vernaculaire }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('ordre_index') }}">back to list</a>
+
+    <a href="{{ path('ordre_edit', {'id': ordre.id}) }}">edit</a>
+
+    {{ include('ordre/_delete_form.html.twig') }}
+{% endblock %}

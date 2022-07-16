@@ -3,24 +3,8 @@
 {% block title %}SousClasse{% endblock %}
 
 {% block content %}
-    <h1>SousClasse</h1>
+    <h1>Sous-classe des {{ sous_classe.nom }} {% if sous_classe.vernaculaire is defined %}({{ sous_classe.vernaculaire }}){% endif %}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ sous_classe.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ sous_classe.nom }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ sous_classe.vernaculaire }}</td>
-            </tr>
-        </tbody>
-    </table>
 
     <a href="{{ path('sous_classe_index') }}">back to list</a>
 

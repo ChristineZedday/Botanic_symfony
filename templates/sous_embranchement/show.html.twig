@@ -3,8 +3,8 @@
 {% block title %}SousEmbranchement{% endblock %}
 
 {% block content %}
-    <h1>SousEmbranchement des {{ sous_embranchement.nom }} {% if sous_embranchement.vernaculaire is defined %}({{ sous_embranchement.vernaculaire }}) {% endif %}</h1>
-
+    <h1>SousEmbranchement des {{ sous_embranchement.nom }} {% if sous_embranchement.vernaculaire is defined %}({{ sous_embranchement.vernaculaire }}) {% endif %} - Embranchement des {{ sous_embranchement.embranchement.nom }}</h1>
+    
   
      <ul>
         {% for superClasse in sous_embranchement.superClasses %}

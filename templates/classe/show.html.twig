@@ -3,32 +3,9 @@
 {% block title %}Classe{% endblock %}
 
 {% block content %}
-    <h1>Classe</h1>
+    <h1>Classe des {{ Classe.nom }}  {% if Classe.vernaculaire is defined %}({{ Classe.vernaculaire }}){% endif %}</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ classe.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ classe.nom }}</td>
-            </tr>
-            <tr>
-                <th>Caracteres</th>
-                <td>{{ classe.caracteres }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ classe.vernaculaire }}</td>
-            </tr>
-            <tr>
-                <th>Embranchement</th>
-                <td>{{ classe.embranchement }}</td>
-            </tr>
-        </tbody>
-    </table>
+  
 
     <a href="{{ path('classe_index') }}">back to list</a>
 

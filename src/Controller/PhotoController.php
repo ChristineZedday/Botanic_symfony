@@ -39,7 +39,7 @@ class PhotoController extends AbstractController
             $file = $form->get('image')->getData()->getClientOriginalName();
             $image->move($this->getParameter('app.photos_directory'),$file);
             $entityManager = $this->getDoctrine()->getManager();
-            $photo->fichier = $file;
+            $photo->setfichier($file);
             $entityManager->persist($photo);
             $entityManager->flush();
 

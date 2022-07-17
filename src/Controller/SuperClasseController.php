@@ -53,6 +53,7 @@ class SuperClasseController extends AbstractController
      */
     public function show(SuperClasse $superClasse): Response
     {
+
         return $this->render('super_classe/show.html.twig', [
             'super_classe' => $superClasse,
         ]);

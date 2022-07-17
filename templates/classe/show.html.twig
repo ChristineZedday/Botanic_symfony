@@ -3,9 +3,42 @@
 {% block title %}Classe{% endblock %}
 
 {% block content %}
-    <h1>Classe des {{ Classe.nom }}  {% if Classe.vernaculaire is defined %}({{ Classe.vernaculaire }}){% endif %}</h1>
+    <h1>Classe des {{ classe.nom }}  
+    {% if (classe.vernaculaire is defined and classe.vernaculaire != "")%}
+    ( {{ classe.vernaculaire }} )
+    {% endif %} <br/>
+     {% if classe.superClasse is defined %} 
+     Super classe des {{ classe.superClasse.nom }},
+         {% if classe.superClasse.sousEmbranchement is defined %}
+        Sous Embranchement des {{ classe.superClasse.sousEmbranchement.nom }}, Embranchement des 
+        {{ classe.superClasse.sousEmbranchement.Embranchement.nom }}
+        {% elseif classe.superClasse.Embranchement is defined %}
+         {{ classe.superClasse.Embranchement.nom }}
+        {% endif %} 
+    {% endif %} 
+    </h1>
 
-  
+  <ul>
+        {% for sousClasse in classe.sousClasses %}
+            
+            <li>
+
+               <a href="{{ path('sous_classe_show', {'id': sousClasse.id}) }}"><h2>Sous classe des {{ sousClasse.nom }} {% if sousClasse.vernaculaire is defined %}({{ sousClasse.vernaculaire }}){% endif %}</h2></a>
+               <ul>
+                {% for ordre in sousClasse.ordres %}
+                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if ordre.vernaculaire is defined %}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
+                 {% endfor %}
+               </ul>
+            </li>
+            {% endfor %}
+        </ul>
+ <ul>
+                {% for ordre in classe.ordres %}
+                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if ordre.vernaculaire is defined %}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
+                 {% endfor %}
+               </ul>
+        
+       
 
     <a href="{{ path('classe_index') }}">back to list</a>
 

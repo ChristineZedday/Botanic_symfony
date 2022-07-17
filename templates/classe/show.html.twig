@@ -4,7 +4,7 @@
 
 {% block content %}
     <h1>Classe des {{ classe.nom }}  
-    {% if (classe.vernaculaire is defined and classe.vernaculaire != "")%}
+    {% if (classe.vernaculaire is defined and classe.vernaculaire != "") %}
     ( {{ classe.vernaculaire }} )
     {% endif %} <br/>
      {% if classe.superClasse is defined %} 
@@ -23,10 +23,10 @@
             
             <li>
 
-               <a href="{{ path('sous_classe_show', {'id': sousClasse.id}) }}"><h2>Sous classe des {{ sousClasse.nom }} {% if sousClasse.vernaculaire is defined %}({{ sousClasse.vernaculaire }}){% endif %}</h2></a>
+               <a href="{{ path('sous_classe_show', {'id': sousClasse.id}) }}"><h2>Sous classe des {{ sousClasse.nom }} {% if (sousClasse.vernaculaire is defined and sousClasse.vernaculaire != "")%}({{ sousClasse.vernaculaire }}){% endif %}</h2></a>
                <ul>
                 {% for ordre in sousClasse.ordres %}
-                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if ordre.vernaculaire is defined %}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
+                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if (ordre.vernaculaire is defined and ordre.vernaculaire != "")%}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
                  {% endfor %}
                </ul>
             </li>
@@ -34,7 +34,7 @@
         </ul>
  <ul>
                 {% for ordre in classe.ordres %}
-                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if ordre.vernaculaire is defined %}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
+                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if (ordre.vernaculaire is defined and ordre.vernaculaire != "") %}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
                  {% endfor %}
                </ul>
         

@@ -3,9 +3,13 @@
 {% block title %}SousClasse{% endblock %}
 
 {% block content %}
-    <h1>Sous-classe des {{ sous_classe.nom }} {% if sous_classe.vernaculaire is defined %}({{ sous_classe.vernaculaire }}){% endif %}</h1>
+    <h1>Sous-classe des {{ sous_classe.nom }} {% if (sous_classe.vernaculaire is defined and sous_classe.vernaculaire != "") %}({{ sous_classe.vernaculaire }}){% endif %}</h1>
 
-
+ <ul>
+                {% for ordre in sous_classe.ordres %}
+                <li> <a href="{{ path('ordre_show', {'id': ordre.id}) }}"><h2>Ordre des {{ ordre.nom }} {% if (ordre.vernaculaire is defined and ordre.vernaculaire != "") %}({{ ordre.vernaculaire }}){% endif %}</h2></a></li>
+                 {% endfor %}
+               </ul>
     <a href="{{ path('sous_classe_index') }}">back to list</a>
 
     <a href="{{ path('sous_classe_edit', {'id': sous_classe.id}) }}">edit</a>

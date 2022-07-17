@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\OrdreRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -36,6 +38,16 @@ class Ordre
      * @ORM\ManyToOne(targetEntity=SousClasse::class, inversedBy="ordres")
      */
     private $sousClasse;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Famille::class, mappedBy="ordre")
+     */
+    private $familles;
+
+    public function __construct()
+    {
+        $this->familles = new ArrayCollection();
+    }
 
    
 
@@ -88,6 +100,36 @@ class Ordre
     public function setSousClasse(?SousClasse $sousClasse): self
     {
         $this->sousClasse = $sousClasse;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Famille[]
+     */
+    public function getFamilles(): Collection
+    {
+        return $this->familles;
+    }
+
+    public function addFamille(Famille $famille): self
+    {
+        if (!$this->familles->contains($famille)) {
+            $this->familles[] = $famille;
+            $famille->setOrdre($this);
+        }
+
+        return $this;
+    }
+
+    public function removeFamille(Famille $famille): self
+    {
+        if ($this->familles->removeElement($famille)) {
+            // set the owning side to null (unless already changed)
+            if ($famille->getOrdre() === $this) {
+                $famille->setOrdre(null);
+            }
+        }
 
         return $this;
     }

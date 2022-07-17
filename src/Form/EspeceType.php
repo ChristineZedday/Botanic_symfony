@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Espece;
+use App\Entity\Genre;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -15,7 +17,12 @@ class EspeceType extends AbstractType
             ->add('nom')
             ->add('vernaculaire')
             ->add('savant')
-            ->add('genre')
+            ->add('genre', EntityType::class, [
+                'class' => Genre::class,
+                'choice_label' => 'nom',
+                'multiple' => false,
+                'mapped' => true,
+                'required' => true, ])
         ;
     }
 

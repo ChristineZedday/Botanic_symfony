@@ -8,10 +8,14 @@
     {% if ordre.sousClasse is defined %}
     Sous-classe des {{ordre.sousClasse.nom}},  Classe des {{ordre.sousClasse.classe.nom}}
     {% else %}
-    {{ordre.classe}}
+    Classe des {{ordre.classe}}
     {% endif %}
     </h1>
-
+<ul>
+                {% for famille in ordre.familles %}
+                <li> <a href="{{ path('famille_show', {'id': famille.id}) }}"><h2>Famille des {{ famille.nom }} {% if (famille.vernaculaire is defined and famille.vernaculaire != "") %}({{ famille.vernaculaire }}){% endif %}</h2></a></li>
+                 {% endfor %}
+               </ul>
     
                
             

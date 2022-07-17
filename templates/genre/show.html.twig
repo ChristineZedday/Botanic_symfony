@@ -3,24 +3,12 @@
 {% block title %}Genre{% endblock %}
 
 {% block content %}
-    <h1>Genre</h1>
+    <h1>Genre {{ genre.nom }} {% if (genre.vernaculaire is defined and genre.vernaculaire != "") %}
+({{ genre.vernaculaire }}){% endif %}<br/>
+Famille des {{ genre.famille.nom }}, Ordre des {{ genre.famille.ordre.nom }}
+</h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ genre.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ genre.nom }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ genre.vernaculaire }}</td>
-            </tr>
-        </tbody>
-    </table>
+   
 
     <a href="{{ path('genre_index') }}">back to list</a>
 

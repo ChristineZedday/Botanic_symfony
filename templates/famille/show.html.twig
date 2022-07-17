@@ -3,25 +3,22 @@
 {% block title %}Famille{% endblock %}
 
 {% block content %}
-    <h1>Famille</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ famille.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ famille.nom }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ famille.vernaculaire }}</td>
-            </tr>
-        </tbody>
-    </table>
-
+    <h1>Famille des  {{ famille.nom }}
+{% if (famille.vernaculaire is defined and famille.vernaculaire != "") %}
+({{ famille.vernaculaire }}){% endif %}<br/>
+Ordre des {{ famille.ordre.nom }}, 
+{% if (famille.ordre.sousClasse is defined and famille.ordre.sousClasse != "") %}
+Sous-classe des {{ famille.ordre.sousClasse.nom }}, Classe des {{ famille.ordre.sousClasse.classe.nom }}
+{% else %}
+Classe des {{ famille.ordre.classe.nom }}
+{% endif %}
+</h1>
+<ul>
+                {% for genre in famille.genres %}
+                <li> <a href="{{ path('genre_show', {'id': genre.id}) }}"><h2>{{ genre.nom }} {% if (genre.vernaculaire is defined and genre.vernaculaire != "") %}({{ genre.vernaculaire }}){% endif %}</h2></a></li>
+                 {% endfor %}
+               </ul>
+    
     <a href="{{ path('famille_index') }}">back to list</a>
 
     <a href="{{ path('famille_edit', {'id': famille.id}) }}">edit</a>

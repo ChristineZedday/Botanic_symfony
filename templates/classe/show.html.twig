@@ -12,9 +12,12 @@
          {% if classe.superClasse.sousEmbranchement is defined %}
         Sous Embranchement des {{ classe.superClasse.sousEmbranchement.nom }}, Embranchement des 
         {{ classe.superClasse.sousEmbranchement.Embranchement.nom }}
-        {% elseif classe.superClasse.Embranchement is defined %}
+        {% else%}
          {{ classe.superClasse.Embranchement.nom }}
         {% endif %} 
+      {% elseif classe.sousEmbranchement is defined %}
+       Sous Embranchement des {{ classe.sousEmbranchement.nom }}, Embranchement des 
+        {{ classe.sousEmbranchement.Embranchement.nom }}
     {% endif %} 
     </h1>
 

@@ -2,25 +2,20 @@
 
 {% block title %}Ordre{% endblock %}
 
-{% block body %}
-    <h1>Ordre</h1>
+{% block content %}
+    <h1>Ordre des {{ ordre.nom }} {% if (ordre.vernaculaire is defined and ordre.vernaculaire != "") %} ({{ ordre.vernaculaire }})   {% endif %}
+    <br/>
+    {% if ordre.sousClasse is defined %}
+    Sous-classe des {{ordre.sousClasse.nom}},  Classe des {{ordre.sousClasse.classe.nom}}
+    {% else %}
+    {{ordre.classe}}
+    {% endif %}
+    </h1>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ ordre.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ ordre.nom }}</td>
-            </tr>
-            <tr>
-                <th>Vernaculaire</th>
-                <td>{{ ordre.vernaculaire }}</td>
-            </tr>
-        </tbody>
-    </table>
+    
+               
+            
+         
 
     <a href="{{ path('ordre_index') }}">back to list</a>
 

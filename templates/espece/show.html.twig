@@ -11,7 +11,9 @@ Sous-classe des {{ espece.genre.famille.ordre.sousClasse.nom }}, Classe des {{ e
 Classe des {{ espece.genre.famille.ordre.classe.nom }}
 {% endif %}</h2>
 
-    
+{% for photo in espece.photos %} 
+  <img src="{{ asset('photos/' ~ photo.fichier) }}"/>
+{% endfor %}
 
     <a href="{{ path('espece_index') }}">back to list</a>
 

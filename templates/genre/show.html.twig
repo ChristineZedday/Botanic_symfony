@@ -8,6 +8,15 @@
 Famille des {{ genre.famille.nom }}, Ordre des {{ genre.famille.ordre.nom }}
 </h1>
 
+{% for photo in genre.photos %} 
+  <img src="{{ asset('photos/' ~ photo.fichier) }}"/>
+{% endfor %}
+{% for espece in genre.especes %} 
+    {% for photo in espece.photos %} 
+    
+    <img src="{{ asset('photos/' ~ photo.fichier) }}"/>
+    {% endfor %}
+{% endfor %}
    
 
     <a href="{{ path('genre_index') }}">back to list</a>

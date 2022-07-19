@@ -19,6 +19,7 @@ class PhotoType extends AbstractType
             ->add('nom')
             ->add('date')
             ->add('lieu')
+            ->add('auteur')
             ->add('espece', EntityType::class, [
                 'class' => Espece::class,
                 'choice_label' => 'nom',

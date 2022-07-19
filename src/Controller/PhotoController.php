@@ -37,7 +37,34 @@ class PhotoController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $image = $form->get('image')->getData();
             $file = $form->get('image')->getData()->getClientOriginalName();
+            $info = getimagesize($image);
+          
+            list($largeur,$hauteur) = $info;
+           
             $image->move($this->getParameter('app.photos_directory'),$file);
+
+            $path = $this->getParameter('app.photos_directory').'/'.$file;
+            
+              
+             /* $ratio = $largeur / $hauteur;
+                $width = 1200;
+                $height = 800;
+                if ($width / $height > $ratio) {
+                    $width = $height * $ratio;
+                } else {
+                    $height = $width / $ratio;
+                }*/
+                $dst_im = @ImageCreatetruecolor($largeur/5, $hauteur/5);     
+                $src_im = @ImageCreateFromJpeg($path);
+                imagecopyresampled($dst_im,$src_im,0,0,0,0,$largeur/5, $hauteur/5,$largeur,$hauteur);
+               
+                // Sauve la nouvelle image
+                @ImageJpeg($dst_im,$path,100);          
+              
+             
+  
+ 
+            
             $entityManager = $this->getDoctrine()->getManager();
             $photo->setfichier($file);
             $entityManager->persist($photo);

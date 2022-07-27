@@ -46,17 +46,22 @@ class PhotoController extends AbstractController
             $path = $this->getParameter('app.photos_directory').'/'.$file;
             
               
-             /* $ratio = $largeur / $hauteur;
-                $width = 1200;
-                $height = 800;
-                if ($width / $height > $ratio) {
-                    $width = $height * $ratio;
-                } else {
-                    $height = $width / $ratio;
-                }*/
-                $dst_im = @ImageCreatetruecolor($largeur/5, $hauteur/5);     
+             
+                $maxwidth = 1000;
+                $maxheight = 750;
+                if ($hauteur > $largeur)
+                {
+                    $finalH = $maxheight;
+                    $finalL = $largeur * ($finalH/$hauteur);
+                }
+                else{
+                    $finalL = $maxwidth;
+                    $finalH = $hauteur * ($finalL/$largeur);
+                }
+               
+                $dst_im = @ImageCreatetruecolor($finalL, $finalH);     
                 $src_im = @ImageCreateFromJpeg($path);
-                imagecopyresampled($dst_im,$src_im,0,0,0,0,$largeur/5, $hauteur/5,$largeur,$hauteur);
+                imagecopyresampled($dst_im,$src_im,0,0,0,0,$finalL, $finalH,$largeur,$hauteur);
                
                 // Sauve la nouvelle image
                 @ImageJpeg($dst_im,$path,100);          

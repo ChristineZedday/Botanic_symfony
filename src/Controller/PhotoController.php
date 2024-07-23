@@ -9,6 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use DateTime;
+
 
 /**
  * @Route("/photo")
@@ -39,14 +41,21 @@ class PhotoController extends AbstractController
             $file = $form->get('image')->getData()->getClientOriginalName();
             $info = getimagesize($image);
           
+          
             list($largeur,$hauteur) = $info;
            
             $image->move($this->getParameter('app.photos_directory'),$file);
 
             $path = $this->getParameter('app.photos_directory').'/'.$file;
-            
-              
-             
+
+            $exif = exif_read_data($path, 'EXIF');//donnees enregistrées par l'appareil photo
+            if ($exif)
+          { $date = $exif['DateTime'];
+        
+
+            $date = DateTime::createFromFormat('Y:m:d H:i:s', $date);
+          }
+           
                 $maxwidth = 1000;
                 $maxheight = 750;
                 if ($hauteur > $largeur)
@@ -72,6 +81,10 @@ class PhotoController extends AbstractController
             
             $entityManager = $this->getDoctrine()->getManager();
             $photo->setfichier($file);
+            if (empty($photo->getDate))
+             {
+                $photo->setDate($date);
+            }
             $entityManager->persist($photo);
             $entityManager->flush();
 

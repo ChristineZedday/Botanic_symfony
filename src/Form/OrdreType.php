@@ -28,7 +28,7 @@ class OrdreType extends AbstractType
             'choice_label' => 'nom',
             'multiple' => false,
             'mapped' => true,
-            'required' => true, ])
+            'required' => false, ])
         ;
     }
 

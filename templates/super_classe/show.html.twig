@@ -3,8 +3,12 @@
 {% block title %}SuperClasse{% endblock %}
 
 {% block content %}
-    <h1>Super-classe des {{ super_classe.nom }} {% if (super_classe.vernaculaire is defined and super_classe.vernaculaire != "") %}({{ super_classe.vernaculaire }}){% endif %}  <br/> {% if super_classe.sousEmbranchement is defined %}sous-Embranchement des {{ super_classe.sousEmbranchement.nom }}, Embranchement des {{ super_classe.sousEmbranchement.embranchement.nom }}
-     {% elseif super_classe.embranchement is defined %}Embranchement des {{ super_classe.embranchement.nom }}{% endif %}
+    <h1>Super-classe des {{ super_classe.nom }} {% if (super_classe.vernaculaire is defined and super_classe.vernaculaire != "") %}({{ super_classe.vernaculaire }})
+        {% endif %}  <br/> 
+        {% if super_classe.sousEmbranchement is defined and super_classe.sousEmbranchement != null%}sous-Embranchement des {{ super_classe.sousEmbranchement.nom }}, 
+        {% endif %} 
+       
+     {% if super_classe.embranchement is defined %}Embranchement des {{ super_classe.embranchement.nom }}{% endif %}
    
      </h1>
 

@@ -5,7 +5,7 @@
 {% block content %}
     <h1>{{ espece.genre.nom }} {{ espece.nom }} {{ espece.savant }} {% if (espece.vernaculaire is defined and espece.vernaculaire != "") %}
 ({{ espece.vernaculaire }}){% endif %}</h1>
-<h2>Famille des {{ espece.genre.famille.nom }}, Ordre des  {{ espece.genre.famille.ordre.nom }}, {% if (espece.genre.famille.ordre.sousClasse is defined and espece.genre.famille.ordre.sousClasse != "") %}
+<h2>Famille des {{ espece.genre.famille.nom }}, Ordre des  {{ espece.genre.famille.ordre.nom }}, {% if (espece.genre.famille.ordre.sousClasse is defined and espece.genre.famille.ordre.sousClasse != null) %}
 Sous-classe des {{ espece.genre.famille.ordre.sousClasse.nom }}, Classe des {{ espece.genre.famille.ordre.sousClasse.classe.nom }}
 {% else %}
 Classe des {{ espece.genre.famille.ordre.classe.nom }}

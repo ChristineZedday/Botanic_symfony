@@ -8,7 +8,7 @@
     <ul>
         {% for sousEmbranchement in embranchement.sousEmbranchements %}
             <li>
-               <a href="{{ path('sous_embranchement_show', {'id': sousEmbranchement.id}) }}"><h2>Sous-embranchement des {{ sousEmbranchement.nom }} {% if sousEmbranchement.vernaculaire is defined %}({{ sousEmbranchement.vernaculaire }}){% endif %}</h2></a>
+               <a href="{{ path('sous_embranchement_show', {'id': sousEmbranchement.id}) }}"><h2>Sous-embranchement des {{ sousEmbranchement.nom }} {% if sousEmbranchement.vernaculaire is defined  %}({{ sousEmbranchement.vernaculaire }}){% endif %}</h2></a>
                  <ul>
                     {% for super_classe in sousEmbranchement.superClasses %}
                         <li>

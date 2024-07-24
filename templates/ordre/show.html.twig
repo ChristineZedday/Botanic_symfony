@@ -5,11 +5,11 @@
 {% block content %}
     <h1>Ordre des {{ ordre.nom }} {% if (ordre.vernaculaire is defined and ordre.vernaculaire != "") %} ({{ ordre.vernaculaire }})   {% endif %}
     <br/>
-    {% if ordre.sousClasse is defined %}
+    {% if ordre.sousClasse is defined and ordre.sousClasse != null %}
     Sous-classe des {{ordre.sousClasse.nom}},  Classe des {{ordre.sousClasse.classe.nom}}
-    {% else %}
-    Classe des {{ordre.classe}}
     {% endif %}
+    Classe des {{ordre.classe}}
+    
     </h1>
 <ul>
                 {% for famille in ordre.familles %}

@@ -4,14 +4,14 @@
 
 {% block content %}
     <h1>Famille des  {{ famille.nom }}
-{% if (famille.vernaculaire is defined and famille.vernaculaire != "") %}
+{% if (famille.vernaculaire is defined and famille.vernaculaire != null) %}
 ({{ famille.vernaculaire }}){% endif %}<br/>
 Ordre des {{ famille.ordre.nom }}, 
-{% if (famille.ordre.sousClasse is defined and famille.ordre.sousClasse != "") %}
+{% if (famille.ordre.sousClasse is defined and famille.ordre.sousClasse != null) %}
 Sous-classe des {{ famille.ordre.sousClasse.nom }}, Classe des {{ famille.ordre.sousClasse.classe.nom }}
-{% else %}
-Classe des {{ famille.ordre.classe.nom }}
 {% endif %}
+Classe des {{ famille.ordre.classe.nom }}
+
 </h1>
 <ul>
                 {% for genre in famille.genres %}

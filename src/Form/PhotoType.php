@@ -9,6 +9,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class PhotoType extends AbstractType
@@ -18,8 +19,8 @@ class PhotoType extends AbstractType
         $builder
             ->add('nom')
             ->add('date')
-            ->add('lieu')
-            ->add('auteur')
+            ->add('lieu', TextType::class, ["attr" => ["default" => "Rennes"]])
+            ->add('auteur', TextType::class, ["attr" => ["default" => "Christine Zedday"]])
             ->add('espece', EntityType::class, [
                 'class' => Espece::class,
                 'choice_label' => 'nom',

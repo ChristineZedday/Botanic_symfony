@@ -8,7 +8,7 @@
         {% if super_classe.sousEmbranchement is defined and super_classe.sousEmbranchement != null%}sous-Embranchement des {{ super_classe.sousEmbranchement.nom }}, 
         {% endif %} 
        
-     {% if super_classe.embranchement is defined %}Embranchement des {{ super_classe.embranchement.nom }}{% endif %}
+     {% if super_classe.embranchement is defined and super_classe.embranchement!=null %}Embranchement des {{ super_classe.embranchement.nom }}{% endif %}
    
      </h1>
 
